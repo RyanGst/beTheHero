@@ -1,4 +1,4 @@
-  import UserRepository from '../repositories/userRepository';
+  import OngRepository from '../repositories/ongRepository';
   import * as httpStatus from 'http-status';
 
 
@@ -6,11 +6,11 @@
     res.status(statusCode).json({ 'result': data })
   }
 
-  class UserController {
+  class OngController {
     constructor() { }
 
   get(req, res) {
-    UserRepository
+    OngRepository
     .getAll()
     .then(user => sendReponse(res, httpStatus.OK, user))
     .catch(err => console.error.bind(console, `Error ${err}`))
@@ -22,7 +22,7 @@
     if (!_id) {
         sendReponse(res, httpStatus.OK, 'user not found!');
     } else {
-      UserRepository
+      OngRepository
             .getById(req.params.id)
             .then(programs => sendReponse(res, httpStatus.OK, programs))
             .catch(err => console.error.bind(console, `Error ${err}`))
@@ -30,7 +30,7 @@
   }
 
   create(req, res) {
-    UserRepository
+    OngRepository
         .create(req.body)
         .then(menus => sendReponse(res, httpStatus.CREATED, menus))
         .catch(err => console.error.bind(console, `Error ${err}`))
@@ -43,7 +43,7 @@
         return sendReponse(res, httpStatus.NOT_FOUND, 'User not found!');
     }
 
-      UserRepository
+      OngRepository
             .update(_id, req.body)
             .then(user => sendReponse(res, httpStatus.OK, user))
             .catch(err => console.error.bind(console, `Error ${err}`));
@@ -56,7 +56,7 @@
         return sendReponse(res, httpStatus.NOT_FOUND, 'User not found!');
     }
 
-    UserRepository
+    OngRepository
         .delete(req.params.id)
         .then(user => sendReponse(res, httpStatus.OK, `User  ${user.name} deleted with success!`))
         .catch(err => console.error.bind(console, `Error ${err}`));
@@ -64,4 +64,4 @@
 
   }
 
-  export default new UserController();
+  export default new OngController();

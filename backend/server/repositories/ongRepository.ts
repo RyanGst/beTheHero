@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import UserSchema from '../schemas/userSchema';
 
-class UserRepository {
+class OngRepository {
   private model;
 
     constructor() {
@@ -32,4 +32,4 @@ class UserRepository {
 }
 
 
-export default new UserRepository;
+export default new OngRepository;
