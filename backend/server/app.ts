@@ -8,15 +8,12 @@ class App {
   public app: express.Application;
   private morgan: morgan.Morgan;
   private bodyParser;
-  // private database: DataBase;
   public router: Routes = new Routes();
 
   constructor() {
     this.app = express();
     this.enableCors();
     this.middleware();
-    // this.database = new DataBase();
-    this.dataBaseConnection();
     this.router.routes(this.app);
   }
 
@@ -29,14 +26,6 @@ class App {
     };
 
     this.app.use(cors(options));
-  }
-
-  dataBaseConnection() {
-    // this.database.createConnection();
-  }
-
-  closedataBaseConnection(message, callback) {
-    // this.database.closeConnection(message, () => callback());
   }
 
   middleware() {
