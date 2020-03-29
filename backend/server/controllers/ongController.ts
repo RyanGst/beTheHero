@@ -7,7 +7,6 @@ const sendReponse = function (res, statusCode, data) {
 }
 
 class OngController {
-  constructor() { }
 
   get(req, res) {
     OngRepository
