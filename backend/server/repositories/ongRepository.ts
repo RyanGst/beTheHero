@@ -1,33 +1,33 @@
-import * as mongoose from 'mongoose';
-import UserSchema from '../schemas/userSchema';
+import { instance } from '../config/database/connection';
 
 class OngRepository {
-  private model;
+  private database;
 
-    constructor() {
-      this.model = mongoose.model('User', UserSchema);
-     }
+  constructor() {
+    this.database = instance;
+  }
 
-        getAll() {
-          return this.model.find({});
-        }
+  getAll() {
+    console.log('you got this')
+    // return this.database('ongs').select('*');
+  }
 
-        getById(_id) {
-          return this.model.findById(_id);
-        }
+  getById(_id) {
+    return this.database.findById(_id);
+  }
 
-        create(user) {
-          return this.model.create(user);
-        }
+  create(user) {
+    return this.database.create(user);
+  }
 
-        update(_id, user) {
-          const updateUser = (<any>Object).assign({}, user);
-          return this.model.findByIdAndUpdate(_id, updateUser, { new: true });
-        }
+  update(_id, user) {
+    const updateUser = (<any>Object).assign({}, user);
+    return this.database.findByIdAndUpdate(_id, updateUser, { new: true });
+  }
 
-        delete(_id) {
-          return this.model.findByIdAndRemove(_id);
-        }
+  delete(_id) {
+    return this.database.findByIdAndRemove(_id);
+  }
 
 }
 
