@@ -4,10 +4,10 @@ export const config = {
 
     client: "sqlite3",
     connection: {
-        filename: "./db.sqlite"
+        filename: "server/config/database/db.sqlite"
     },
     migrations: {
-        directory: './migrations'
+        directory: 'server/config/database/migrations'
     },
     useNullAsDefault: true
 

@@ -3,7 +3,7 @@ import * as express from "express";
 import Auth from '../config/auth';
 
 import uploads from '../config/uploads'
-import OngRepository from "../repositories/ongRepository";
+import ongController from "../controllers/ongController";
 
 export class Routes {
     private router: express.Router;
@@ -14,8 +14,7 @@ export class Routes {
             res.send({ 'result': 'version 0.0.1' })
         });
 
-        app.route('/ongs').get((req, res) => {
-            OngRepository.getAll()
-        })
+        app.route('/ongs').get(ongController.get)
+        app.route('/ongs').post(ongController.create)
     }
 }

@@ -1,34 +1,26 @@
 import { instance } from '../config/database/connection';
+import { randomBytes } from 'crypto';
+import Ong from '../models/ongModel';
 
 class OngRepository {
-  private database;
 
-  constructor() {
-    this.database = instance;
+  async getAll() {
+    try {
+      return await instance.select('*').from('ongs');
+    } catch (error) {
+      return error;
+    }
   }
 
-  getAll() {
-    console.log('you got this')
-    // return this.database('ongs').select('*');
-  }
+  async create(ong: Ong) {
+    const { name, email, whatsapp, city, uf } = ong;
 
-  getById(_id) {
-    return this.database.findById(_id);
-  }
+    const id = randomBytes(4).toString('HEX');
 
-  create(user) {
-    return this.database.create(user);
-  }
+    await instance.insert({id, name, email, whatsapp, city, uf}).into('ongs')
 
-  update(_id, user) {
-    const updateUser = (<any>Object).assign({}, user);
-    return this.database.findByIdAndUpdate(_id, updateUser, { new: true });
+    return {id}
   }
-
-  delete(_id) {
-    return this.database.findByIdAndRemove(_id);
-  }
-
 }
 
 
